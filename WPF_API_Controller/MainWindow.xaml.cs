@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_API_Controller.ViewModels;
 
 namespace WPF_API_Controller
 {
@@ -23,11 +24,26 @@ namespace WPF_API_Controller
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainViewModel();   
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void AddPlayer(object sender, RoutedEventArgs e)
         {
+            if(sender is MenuItem)
+            {
+                AddPlayerWindow addPlayerWindow = new AddPlayerWindow();
+                addPlayerWindow.Show();         
+            }
+        }
 
+        private void AddTeam(object sender, RoutedEventArgs e)
+        {
+            if(sender is MenuItem)
+            {
+                AddTeamWindow addTeamWindow = new AddTeamWindow();
+                addTeamWindow.Show();
+            }
         }
     }
 }

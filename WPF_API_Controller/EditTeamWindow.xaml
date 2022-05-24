@@ -1,0 +1,49 @@
+﻿<Window x:Class="WPF_API_Controller.EditTeamWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WPF_API_Controller.ViewModels"
+        xmlns:local="clr-namespace:WPF_API_Controller"
+        mc:Ignorable="d"
+        Title="EditTeamWindow" Height="350" Width="350">
+    <Window.DataContext>
+        <vm:TeamsViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Edit Team" TextAlignment="Center" FontSize="15" FontWeight="Bold"/>
+            <WrapPanel Margin="5">
+                <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Name: " TextWrapping="Wrap" Margin="5"/>
+                <TextBox HorizontalAlignment="Stretch" Margin="5" Width="130" Grid.Row="1" Text="{Binding EditedTeam.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Owner:" TextWrapping="Wrap" Margin="5"/>
+                <TextBox HorizontalAlignment="Stretch" Margin="5" Width="130" Text="{Binding EditedTeam.Owner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock  HorizontalAlignment="Left" FontWeight="Bold" Text="Headquaters in: " TextWrapping="Wrap" Margin="5"/>
+                <TextBox HorizontalAlignment="Center" Width="130" Text="{Binding EditedTeam.Place, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <!--<xctk:IntegerUpDown HorizontalAlignment="Right" Width="100" FormatString="{}{0}$" Value="{Binding EditedTeam.MoneyWon}" Increment="1" Maximum="5000" Minimum="0"/>-->
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock  HorizontalAlignment="Left" FontWeight="Bold" Text="Members count:" TextWrapping="Wrap" Margin="5"/>
+                <xctk:IntegerUpDown Width="100" Value="{Binding EditedTeam.MembersCount}" Increment="1" Maximum="5000" Minimum="0"/>
+                <!--<xctk:IntegerUpDown Width="100" Value="{Binding EditedTeam.NumberOfTournamentsPlayed}" Increment="1" Maximum="5000" Minimum="0"/>-->
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock  HorizontalAlignment="Left" FontWeight="Bold" Text="Total Winnings: " TextWrapping="Wrap" Margin="5"/>
+                <xctk:IntegerUpDown Width="100" Value="{Binding EditedTeam.MoneyWon}"  FormatString="{}{0}$" Increment="1" Maximum="5000" Minimum="0"/>
+                <!--<xctk:IntegerUpDown Width="100" Value="{Binding EditedTeam.StartedPlaying}" Increment="1" Maximum="5000" Minimum="0"/>-->
+            </WrapPanel>
+            <WrapPanel Margin="5" Orientation="Horizontal">
+                <TextBlock  HorizontalAlignment="Left" FontWeight="Bold" Text="Created:" TextWrapping="Wrap" Margin="5"/>
+                <!--<TextBlock HorizontalAlignment="Center" Text="{Binding EditedTeam.CreationDate}" Margin="5"/>-->
+                <xctk:DateTimePicker Value="{Binding EditedTeam.CreationDate}" Width="150"></xctk:DateTimePicker>
+                <!--<xctk:IntegerUpDown Width="100" FormatString="{}{0}$" Value="{Binding EditedTeam.BiggestPrizeWon}" Increment="1" Maximum="5000" Minimum="0"/>-->
+            </WrapPanel>
+            <Button Content="Save" Click="CloseEditTeam" Command="{Binding TeamPUT}" Margin="8"/>
+        </StackPanel>
+    </Grid>
+</Window>

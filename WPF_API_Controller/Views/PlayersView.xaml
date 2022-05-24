@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="WPF_API_Controller.Views.PlayersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_API_Controller.Views" 
+             xmlns:viewmodels="clr-namespace:WPF_API_Controller.ViewModels" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:PlayersViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="WrapPanel">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="#6c8acd"/>            
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding Players}" Grid.Column="0" 
+            SelectedIndex="{Binding SelectedPlayerIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            SelectedItem="{Binding SelectedPlayer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding NickName}" FontWeight="SemiBold"/>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding FirstName}"/>
+                            <TextBlock Text="  "/>
+                            <TextBlock Text="{Binding LastName}"/>
+                        </WrapPanel>
+                        <TextBlock Text="{Binding StartedPlaying}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="12" Text="Started Playing:"></TextBlock>
+            <xctk:WatermarkTextBox HorizontalAlignment="Right" Grid.Column="0" Margin="8" Width="60" Text="{Binding StartedPlaying, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Column="1" Margin="12" Text="Team Name:"></TextBlock>
+            <xctk:WatermarkTextBox HorizontalAlignment="Right" Grid.Column="1" Margin="8" Width="80" Watermark="Liquid" Text="{Binding TeamName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Column="2" Margin="8" Command="{Binding ReloadCommand}">
+                Reload
+            </Button>
+        </Grid>
+
+        <StackPanel Grid.Column="1" Grid.RowSpan="2">
+            
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Nickname:" TextWrapping="Wrap"  />
+                <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="{Binding SelectedPlayer.NickName}" TextWrapping="Wrap"  />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="First Name:" TextWrapping="Wrap"  />
+                <TextBlock HorizontalAlignment="Stretch"   Width="130" Grid.Row="1" Text="{Binding SelectedPlayer.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+                <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Last Name:" TextWrapping="Wrap"  />
+                <TextBlock HorizontalAlignment="Stretch"   Width="130" Text="{Binding SelectedPlayer.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock  HorizontalAlignment="Left" FontWeight="Bold" Text="Money Won:" TextWrapping="Wrap"  />
+                <TextBlock HorizontalAlignment="Center" Text="{Binding SelectedPlayer.MoneyWon}"  />
+                <!--<xctk:IntegerUpDown HorizontalAlignment="Right" Width="100" FormatString="{}{0}$" Value="{Binding SelectedPlayer.MoneyWon}" Increment="1" Maximum="5000" Minimum="0"/>-->
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock  HorizontalAlignment="Left" FontWeight="Bold" Text="Tournaments Played: " TextWrapping="Wrap"  />
+                <TextBlock HorizontalAlignment="Center" Text="{Binding SelectedPlayer.NumberOfTournamentsPlayed}"  />
+                <!--<xctk:IntegerUpDown Width="100" Value="{Binding SelectedPlayer.NumberOfTournamentsPlayed}" Increment="1" Maximum="5000" Minimum="0"/>-->
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock  HorizontalAlignment="Left" FontWeight="Bold" Text="Year when started playing: " TextWrapping="Wrap"  />
+                <TextBlock HorizontalAlignment="Center" Text="{Binding SelectedPlayer.StartedPlaying}"  />
+                <!--<xctk:IntegerUpDown Width="100" Value="{Binding SelectedPlayer.StartedPlaying}" Increment="1" Maximum="5000" Minimum="0"/>-->
+            </WrapPanel>
+            <WrapPanel   Orientation="Horizontal">
+                <TextBlock  HorizontalAlignment="Left" FontWeight="Bold" Text="Biggest prize won" TextWrapping="Wrap"  />
+                <TextBlock HorizontalAlignment="Center" Text="{Binding SelectedPlayer.BiggestPrizeWon}"  />
+                <!--<xctk:IntegerUpDown Width="100" FormatString="{}{0}$" Value="{Binding SelectedPlayer.BiggestPrizeWon}" Increment="1" Maximum="5000" Minimum="0"/>-->
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock  HorizontalAlignment="Left" FontWeight="Bold" Text="Player ID:" TextWrapping="Wrap"  />
+                <TextBlock Width="20" Text="{Binding SelectedPlayer.PlayerId}" TextWrapping="Wrap"  />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Team: " TextWrapping="Wrap"   VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding SelectedPlayer.Team.Name}"/>
+            </WrapPanel>
+            <Button Content="Edit Player"  Click="EditPlayer" Margin="8"/>
+            <Button Background="#fa3737" Content="Delete Player" Command="{Binding PlayerDELETE}" Margin="8"/>
+            <!--<ComboBox HorizontalAlignment="Stretch"   Grid.Row="1" SelectedItem="{Binding SelectedPlayer.Team, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Teams}" DisplayMemberPath="Name"/>-->
+        </StackPanel>
+    </Grid>
+</UserControl>

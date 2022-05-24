@@ -1,0 +1,50 @@
+﻿<Window x:Class="WPF_API_Controller.AddPlayerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WPF_API_Controller.ViewModels"
+        xmlns:local="clr-namespace:WPF_API_Controller"
+        mc:Ignorable="d"
+        Title="AddPlayerWindow" Height="450" Width="350">
+    <Window.DataContext>
+        <vm:AddPlayerViewModel/>
+    </Window.DataContext>
+    <Grid>        
+        <StackPanel>
+            <TextBlock Text="Add New Player" TextAlignment="Center" FontSize="15" FontWeight="Bold"/>
+            <WrapPanel Margin="5">
+                <TextBlock HorizontalAlignment="Left" Text="Nickname:" TextWrapping="Wrap" Margin="5"/>
+                <TextBox HorizontalAlignment="Stretch" Margin="5" Width="130" Grid.Row="1" Text="{Binding NewPlayer.NickName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock HorizontalAlignment="Left" Text="First name:" TextWrapping="Wrap" Margin="5"/>
+                <TextBox HorizontalAlignment="Stretch" Margin="5" Width="130" Grid.Row="1" Text="{Binding NewPlayer.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock HorizontalAlignment="Left"  Text="Last name:" TextWrapping="Wrap" Margin="5"/>
+                <TextBox HorizontalAlignment="Right" Margin="5" Width="130" Text="{Binding NewPlayer.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" />
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock  HorizontalAlignment="Left" Text="Money Won:" TextWrapping="Wrap" Margin="5"/>
+                <xctk:IntegerUpDown HorizontalAlignment="Right" Width="100" FormatString="{}{0}$" Value="{Binding NewPlayer.MoneyWon}" Increment="1" Maximum="5000" Minimum="0"/>
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock  HorizontalAlignment="Left" Text="Tournaments Played:" TextWrapping="Wrap" Margin="5"/>
+                <xctk:IntegerUpDown Width="100" Value="{Binding NewPlayer.NumberOfTournamentsPlayed}" Increment="1" Maximum="5000" Minimum="0"/>
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock  HorizontalAlignment="Left" Text="Year when started playing:" TextWrapping="Wrap" Margin="5"/>
+                <xctk:IntegerUpDown Width="100" Value="{Binding NewPlayer.StartedPlaying}"  FormatString="{}{0}$" Increment="1" Maximum="5000" Minimum="0"/>
+            </WrapPanel>
+            <WrapPanel Margin="5">
+                <TextBlock  HorizontalAlignment="Left" Text="Biggest prize won:" TextWrapping="Wrap" Margin="5"/>
+                <xctk:IntegerUpDown Width="100" FormatString="{}{0}$" Value="{Binding NewPlayer.BiggestPrizeWon}" Increment="1" Maximum="5000" Minimum="0"/>
+            </WrapPanel>
+            <TextBlock HorizontalAlignment="Left" Text="Team" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" SelectedItem="{Binding NewPlayer.Team, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Teams}" DisplayMemberPath="Name"/>
+            <Button Content="Add Player" Click="CloseAddPlayer" Command="{Binding PlayerPOST}" Margin="8"/>
+        </StackPanel>
+    </Grid>
+</Window>

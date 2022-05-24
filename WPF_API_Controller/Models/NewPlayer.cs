@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace WPF_API_Controller.Models
 {
-    public class Player
+    public class NewPlayer
     {
-        public int PlayerId { get; set; }
         public int? TeamId { get; set; }
         public Team? Team { get; set; }
         public string FirstName { get; set; }
