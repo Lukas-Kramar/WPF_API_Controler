@@ -18,6 +18,9 @@
         <Style TargetType="ListBox">
             <Setter Property="Background" Value="#6c8acd"/>
         </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Background" Value="#bbc7ce"/>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -42,7 +45,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Grid Grid.Row="1">
+        <Grid Background="#456ccc" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>                
                 <ColumnDefinition Width="*"/>
@@ -88,7 +91,7 @@
                 <TextBlock Width="20" Text="{Binding SelectedTeam.TeamId}" TextWrapping="Wrap"  />
             </WrapPanel>
             <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Players: " Margin="5" TextWrapping="Wrap"   VerticalAlignment="Center"/>
-            <ListView ItemsSource="{Binding SelectedTeam.Players}" Height="80">
+            <ListView ItemsSource="{Binding SelectedTeam.Players}" Height="80" Background="#bbc7ce">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
