@@ -91,6 +91,11 @@ namespace WPF_API_Controller.ViewModels
             PlayerPUT = new RelayCommand(
                 async () =>
                 {
+                    if(EditedPlayer.Team.TeamId != null)
+                    {
+                        var idTeam = EditedPlayer.Team.TeamId;
+                        EditedPlayer.TeamId = idTeam;
+                    }                    
                     _editPlayerURL = $"{_editPlayerURL}{EditedPlayer.PlayerId}";
                     HttpResponseMessage response = new HttpResponseMessage();
                     _resEditedPlayer = JsonConvert.SerializeObject(EditedPlayer);
@@ -136,15 +141,11 @@ namespace WPF_API_Controller.ViewModels
 
         public int SelectedPlayerIndex { get { return _selectedPlayerIndex + 1; } set { _selectedPlayerIndex = value; NotifyPropertyChanged(); /*Remove.RaiseCanExecuteChanged();*/ } }
         public Player SelectedPlayer { get { return _selectedPlayer; } set { _selectedPlayer = value; NotifyPropertyChanged(); } }
+        public Player EditedPlayer { get { return _editedPlayer; } set { _editedPlayer = value; NotifyPropertyChanged(); } }
         public ObservableCollection<Player> Players { get { return _players; } set { _players = value; NotifyPropertyChanged(); } }
         public ObservableCollection<Team> Teams { get { return _teams; } set { _teams = value; NotifyPropertyChanged(); } }
         public int StartedPlaying { get { return _playerStartedPlaying; } set { _playerStartedPlaying = value; NotifyPropertyChanged(); } }
-        public string TeamName { get { return _playerTeamName; } set { _playerTeamName = value; NotifyPropertyChanged(); } }
-        public Player EditedPlayer
-        {
-            get { return _editedPlayer; }
-            set { _editedPlayer = value; }
-        }
+        public string TeamName { get { return _playerTeamName; } set { _playerTeamName = value; NotifyPropertyChanged(); } }        
 
         public RelayCommand PlayersGET { get; set; }
         public RelayCommand PlayerDELETE { get; set; }

@@ -28,7 +28,7 @@ namespace WPF_API_Controller.ViewModels
 
         public MainViewModel()
         {
-
+            SelectedViewModel = new StartViewModel();
             UpdateViewCommand = new ParametrizedRelayCommand<string>(
                (value) =>
                {

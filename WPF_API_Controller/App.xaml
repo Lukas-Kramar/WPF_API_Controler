@@ -12,5 +12,8 @@
         <DataTemplate DataType="{x:Type viewmodels:PlayersViewModel}">
             <views:PlayersView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:StartViewModel}">
+            <views:WelcomeView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

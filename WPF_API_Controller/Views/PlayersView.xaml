@@ -18,6 +18,8 @@
         <Style TargetType="ListBox">
             <Setter Property="Background" Value="#6c8acd"/>            
         </Style>
+        <Style TargetType="Button">           
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

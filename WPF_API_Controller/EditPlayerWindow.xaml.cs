@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_API_Controller.ViewModels;
 
 namespace WPF_API_Controller
 {
@@ -19,9 +20,15 @@ namespace WPF_API_Controller
     /// </summary>
     public partial class EditPlayerWindow : Window
     {
+        private PlayersViewModel viewmodels;
         public EditPlayerWindow()
         {
             InitializeComponent();
+            viewmodels = (PlayersViewModel)DataContext;
+            if (viewmodels.SelectedPlayer != null)
+            {    
+                viewmodels.EditedPlayer = viewmodels.SelectedPlayer;                
+            }
         }
         
         private void CloseEditPlayer(object sender, RoutedEventArgs e)

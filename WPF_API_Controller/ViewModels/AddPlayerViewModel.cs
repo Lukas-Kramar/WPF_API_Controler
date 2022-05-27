@@ -60,6 +60,7 @@ namespace WPF_API_Controller.ViewModels
                 {
                     var idTeam = NewPlayer.Team.TeamId;
                     NewPlayer.TeamId = idTeam;
+                    NewPlayer.Team = Teams.Where(team => team.TeamId == idTeam).FirstOrDefault();
                     HttpResponseMessage response = new HttpResponseMessage();
                     _resNewPlayer = JsonConvert.SerializeObject(NewPlayer);
                     var buffer = System.Text.Encoding.UTF8.GetBytes(_resNewPlayer);
@@ -72,7 +73,7 @@ namespace WPF_API_Controller.ViewModels
         public NewPlayer NewPlayer
         {
             get { return _newPlayer; }
-            set { _newPlayer = value; }
+            set { _newPlayer = value; NotifyPropertyChanged(); }
         }
         public string Response
         {

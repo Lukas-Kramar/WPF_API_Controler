@@ -36,7 +36,7 @@ namespace WPF_API_Controller.Views
                     EditPlayerWindow editPlayerWindow = new EditPlayerWindow();
                     editPlayerWindow.DataContext = viewmodels;
                     viewmodels.EditedPlayer = viewmodels.SelectedPlayer;
-                    editPlayerWindow.Show();
+                    editPlayerWindow.ShowDialog();
                 }
             }
         }

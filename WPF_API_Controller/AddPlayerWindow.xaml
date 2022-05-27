@@ -11,6 +11,11 @@
     <Window.DataContext>
         <vm:AddPlayerViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#6c8acd"/>
+        </Style>
+    </Window.Resources>
     <Grid>        
         <StackPanel>
             <TextBlock Text="Add New Player" TextAlignment="Center" FontSize="15" FontWeight="Bold"/>
@@ -36,7 +41,7 @@
             </WrapPanel>
             <WrapPanel Margin="5">
                 <TextBlock  HorizontalAlignment="Left" Text="Year when started playing:" TextWrapping="Wrap" Margin="5"/>
-                <xctk:IntegerUpDown Width="100" Value="{Binding NewPlayer.StartedPlaying}"  FormatString="{}{0}$" Increment="1" Maximum="5000" Minimum="0"/>
+                <xctk:IntegerUpDown Width="100" Value="{Binding NewPlayer.StartedPlaying}"  Increment="1" Maximum="5000" Minimum="0"/>
             </WrapPanel>
             <WrapPanel Margin="5">
                 <TextBlock  HorizontalAlignment="Left" Text="Biggest prize won:" TextWrapping="Wrap" Margin="5"/>

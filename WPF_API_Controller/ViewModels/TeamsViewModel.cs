@@ -128,16 +128,12 @@ namespace WPF_API_Controller.ViewModels
         public string Response { get { return _response; } set { _response = value; NotifyPropertyChanged(); } }
         public int SelectedTeamIndex { get { return _selectedTeamIndex + 1; } set { _selectedTeamIndex = value; NotifyPropertyChanged(); /*Remove.RaiseCanExecuteChanged();*/ } }
         public Team SelectedTeam { get { return _selectedTeam; } set { _selectedTeam = value; NotifyPropertyChanged(); } }
+        public Team EditedTeam { get { return _editedTeam; } set { _editedTeam = value; NotifyPropertyChanged(); } }
         public ObservableCollection<Team> Teams { get { return _teams; } set { _teams = value; NotifyPropertyChanged(); } }
         public ObservableCollection<Player> Players { get { return _players; } set { _players = value; NotifyPropertyChanged(); } }
         public ObservableCollection<Player> TeamsPlayers { get { return _players; } set { _players = value; NotifyPropertyChanged(); } }
         public string TeamCountry { get { return _teamCountry; } set { _teamCountry = value; NotifyPropertyChanged(); } }
 
-        public Team EditedTeam
-        {
-            get { return _editedTeam; }
-            set { _editedTeam = value; }
-        }
 
         public RelayCommand TeamsGET { get; set; }
         public RelayCommand ReloadCommand { get; set; }

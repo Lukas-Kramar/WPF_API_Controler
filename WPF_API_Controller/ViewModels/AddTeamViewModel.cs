@@ -60,6 +60,7 @@ namespace WPF_API_Controller.ViewModels
             TeamPOST = new RelayCommand(
                 async () =>
                 {
+                    NewTeam.Players = new ObservableCollection<Player>();
                     HttpResponseMessage response = new HttpResponseMessage();
                     _resNewTeam = JsonConvert.SerializeObject(NewTeam);
                     var buffer = System.Text.Encoding.UTF8.GetBytes(_resNewTeam);

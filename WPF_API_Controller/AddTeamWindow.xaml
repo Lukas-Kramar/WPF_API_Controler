@@ -11,6 +11,11 @@
     <Window.DataContext>
         <vm:AddTeamViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#6c8acd"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <StackPanel>
             <TextBlock Text="Add New Team" TextAlignment="Center" FontSize="15" FontWeight="Bold"/>

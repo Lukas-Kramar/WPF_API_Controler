@@ -11,6 +11,14 @@
     <Window.DataContext>
         <vm:PlayersViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#6c8acd"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#1D4DCB"/>            
+        </Style>
+    </Window.Resources>
     <Grid>
         <StackPanel>
             <TextBlock Text="Edit Player" TextAlignment="Center" FontSize="15" FontWeight="Bold"/>
@@ -36,15 +44,15 @@
             </WrapPanel>
             <WrapPanel Margin="5">
                 <TextBlock  HorizontalAlignment="Left" Text="Year when started playing:" TextWrapping="Wrap" Margin="5"/>
-                <xctk:IntegerUpDown Width="100" Value="{Binding EditedPlayer.StartedPlaying}"  FormatString="{}{0}$" Increment="1" Maximum="5000" Minimum="0"/>
+                <xctk:IntegerUpDown Width="100" Value="{Binding EditedPlayer.StartedPlaying}"   Increment="1" Maximum="5000" Minimum="0"/>
             </WrapPanel>
             <WrapPanel Margin="5">
                 <TextBlock  HorizontalAlignment="Left" Text="Biggest prize won:" TextWrapping="Wrap" Margin="5"/>
                 <xctk:IntegerUpDown Width="100" FormatString="{}{0}$" Value="{Binding EditedPlayer.BiggestPrizeWon}" Increment="1" Maximum="5000" Minimum="0"/>
             </WrapPanel>
             <TextBlock HorizontalAlignment="Left" Text="Team" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center"/>
-            <ComboBox HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" SelectedItem="{Binding EditedPlayer.TeamId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Teams}" DisplayMemberPath="Name"/>
-            <Button Content="Save" Click="CloseEditPlayer" Command="{Binding PlayerPUT}" Margin="8"/>
+            <ComboBox HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" SelectedItem="{Binding EditedPlayer.Team, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Teams}" DisplayMemberPath="Name"/>
+            <Button Content="Save" Click="CloseEditPlayer"   Command="{Binding PlayerPUT}" Margin="8"/>
         </StackPanel>
     </Grid>
 </Window>
